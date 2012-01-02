@@ -1,0 +1,46 @@
+type: GUITree
+version: 0.9
+
+class: RSence.GUIApp
+options:
+  label: ButtonClicker
+
+subviews:
+- HView:
+    rect: [ 0, 0, 800, 300, 0, 0 ] # fill the browser window or stretch/cause scrolling if the window is smaller than 800x300
+    subviews:
+    - HClickButton:
+        rect: [ 8, 24, 150, 24 ] # x=8 y=24 size=150x24
+        bind: :values.button1
+        options:
+          label: Click to run script 1
+    - HClickButton:
+        rect: [ 166, 24, 150, 24 ]
+        bind: :values.button2
+        options:
+          label: Click to run script 2
+    - HTextArea:
+        rect: [ 8, 50, ~, ~, 8, 32 ]
+        bind: :values.results
+        extend:
+          refreshValue: |
+            ->
+              @base()
+              scrollHeight = ELEM.getScrollSize( @markupElemIds.value )[1]
+              visibleHeight = ELEM.getVisibleSize( @markupElemIds.value )[1]
+              scrollPosition = scrollHeight - visibleHeight
+              ELEM.get( @markupElemIds.value ).scrollTop = scrollPosition
+    - HStringView:
+        rect: [ 8, ~, ~, 20, 116, 8 ]
+        bind: :values.uname
+    - HButton:
+        rect: [ ~, ~, 100, 24, 8, 8 ]
+        bind: :values.results
+        extend:
+          click: |
+            ->
+              @setValue('')
+        options:
+          events:
+            click: true
+          label: Clear results

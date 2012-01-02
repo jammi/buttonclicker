@@ -1,0 +1,11 @@
+# Two button values (the data is 0 by default and just the value-change event responders need to be defined):
+button1:
+  responder: button1_responder
+button2:
+  responder: button2_responder
+# This value has just an empty string as its data by default:
+results:
+  data: ''
+# This value contains your system's uname:
+uname:
+  call: get_uname

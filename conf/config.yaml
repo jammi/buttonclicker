@@ -1,0 +1,12 @@
+---
+:base_url: /
+:http_server:
+  :port: '9003'
+  :bind_address: 127.0.0.1
+  :rack_require: mongrel
+:index_html:
+  :title: Button Clicker
+:database:
+  :ses_db: sqlite://db/ses.db
+:transporter_conf:
+  :client_autoreload: true
